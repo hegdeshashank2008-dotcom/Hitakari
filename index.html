@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hitkari</title>
+    <style>
+      #static-fallback {
+        font-family: system-ui, sans-serif;
+        max-width: 520px;
+        margin: 4rem auto;
+        padding: 2rem;
+        text-align: center;
+        color: #e2e8f0;
+        background: #0f172a;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.1);
+      }
+      #static-fallback h1 { margin: 0 0 0.5rem; font-size: 1.75rem; }
+      #static-fallback p { color: #94a3b8; line-height: 1.6; margin: 0.75rem 0; }
+      #static-fallback code {
+        background: #1e293b;
+        padding: 0.15rem 0.4rem;
+        border-radius: 4px;
+        font-size: 0.9em;
+      }
+      #static-fallback a {
+        color: #818cf8;
+        font-weight: 600;
+      }
+      #static-fallback ol { text-align: left; margin: 1rem auto; max-width: 360px; }
+    </style>
+  </head>
+  <body style="background:#020617; min-height:100vh; margin:0;">
+    <div id="root">
+      <div id="static-fallback">
+        <h1>🌿 Hitkari</h1>
+        <p>Loading app…</p>
+      </div>
+    </div>
+    <script type="module" src="./main.tsx"></script>
+    <script>
+      function showGoLiveHelp() {
+        var el = document.getElementById("static-fallback");
+        if (!el) return;
+        el.innerHTML =
+          "<h1>Go Live won't run this page</h1>" +
+          "<p>This is a <strong>React + Vite</strong> app. Go Live only opens plain HTML — it cannot run <code>main.tsx</code>, so the page stays blank.</p>" +
+          "<p><strong>Do this instead (VS Code terminal):</strong></p>" +
+          "<ol>" +
+          "<li><code>npm install</code></li>" +
+          "<li><code>npm run dev:all</code></li>" +
+          "<li>Open <a href=\"http://localhost:5173\">http://localhost:5173</a> in Chrome</li>" +
+          "</ol>" +
+          "<p>Or use Go Live on the static site:<br><a href=\"bb/index.html\">bb/index.html</a> (run <code>npm run server</code> first for login/API)</p>";
+      }
+      window.addEventListener("error", function (e) {
+        if (e.target && e.target.tagName === "SCRIPT") showGoLiveHelp();
+      }, true);
+      setTimeout(function () {
+        if (document.getElementById("static-fallback")) showGoLiveHelp();
+      }, 2500);
+    </script>
+  </body>
+</html>
